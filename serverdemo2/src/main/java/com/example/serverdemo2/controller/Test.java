@@ -21,6 +21,7 @@ public class Test {
     @HystrixCommand(fallbackMethod = "fallback")
    // @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds" ,value = "3000")
     public String feign(){
+        System.out.println("master");
         String s = productClient.findById("11111");
         return s;
     }
