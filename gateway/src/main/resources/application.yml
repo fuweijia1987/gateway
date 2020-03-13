@@ -1,0 +1,31 @@
+server:
+  port: 8710
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: server-demo
+          uri: lb://server-demo
+          predicates:
+            - Path=/demo/**
+          filters:
+            - StripPrefix=1
+            - name: Hystrix
+              args:
+                retries: 3
+                name: fallbackcmd
+                fallbackUri: forward:/networkerror
+  application:
+    name: gateway-server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+

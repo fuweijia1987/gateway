@@ -1,0 +1,33 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: zuul-server
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+zuul:
+  routes:
+    server-demo: /apigateway/demo/**
+    server-demo2: /apigateway/demo2/**
+  #统一入口为上面的配置，其他入口忽略
+  ignored-patterns: /*demo*/**
+  #处理http请求头为空的问题
+  sensitive-headers:
+  host:
+    connect-timeout-millis: 15000
+    socket-timeout-millis: 60000
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+
+#Feign是客户端的负载均衡器，用于某个服务调用其他服务集群的时候实现负载均衡；Zuul是服务端负载均衡器，当用户访问某个服务的请求通过zuul网关的时候
+#zuul网关会对被访问的服务集群进行负载均衡。在该yml文件中配置了zuul.host.connect-timeout-millis和zuul.host.socket-timeout-millis
+#以及ribbon.ReadTimeout和ribbon.ConnectTimeout，配置这些的目的是为了防止请求通过网关的时候报异常：com.netflix.zuul.exception.ZuulException:Hystrix Readed time out
+#意思是说网关的超时时间太短，配置的时候需要注意zuul的超时时间一定要大于ribbon的超时时间。
