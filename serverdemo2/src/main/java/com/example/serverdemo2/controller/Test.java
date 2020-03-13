@@ -22,6 +22,7 @@ public class Test {
    // @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds" ,value = "3000")
     public String feign(){
         System.out.println("master");
+        System.out.println("testController");
         String s = productClient.findById("11111");
         return s;
     }
