@@ -22,7 +22,6 @@ public class Test {
     public String feign(){
 
 
-        System.out.println("testController");
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         String s = productClient.findById("11111");
         return s;
