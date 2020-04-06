@@ -31,7 +31,23 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.10</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.demo</groupId>
+            <artifactId>eureka-client</artifactId>
+            <version>0.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -54,4 +70,12 @@
         </plugins>
     </build>
 
+
+    <distributionManagement>
+        
+        <snapshotRepository>
+            <id>nexussnapshot</id>
+            <url>http://192.168.3.7:8081/nexus/content/repositories/nexussnapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

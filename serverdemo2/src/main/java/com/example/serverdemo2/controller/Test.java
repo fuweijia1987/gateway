@@ -2,7 +2,6 @@ package com.example.serverdemo2.controller;
 
 import com.example.serverdemo2.feign.ProductClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,8 @@ public class Test {
     @HystrixCommand(fallbackMethod = "fallback")
    // @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds" ,value = "3000")
     public String feign(){
-        System.out.println("master");
+
+
         System.out.println("testController");
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         String s = productClient.findById("11111");
